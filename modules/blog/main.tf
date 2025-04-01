@@ -24,9 +24,12 @@ module "blog_vpc" {
   public_subnets  = ["${var.Environment.network_prefix}.101.0/24", "${var.Environment.network_prefix}.102.0/24", "${var.Environment.network_prefix}.103.0/24"]
 
   tags = {
-    Terraform = "true"
+    Project     = var.project_name
+    Owner       = var.owner
     Environment = var.Environment.name
+    Terraform   = "true"
   }
+
 }
 
 
@@ -43,6 +46,13 @@ module "blog_autoscaling" {
   security_groups     = [module.blog_sg.security_group_id]
   instance_type       = var.instance_type
   image_id            = data.aws_ami.app_ami.id
+
+  tags = {
+    Project     = var.project_name
+    Owner       = var.owner
+    Environment = var.Environment.name
+    Terraform   = "true"
+  }
 }
 
 module "blog_alb" {
@@ -76,7 +86,10 @@ module "blog_alb" {
   ]
 
   tags = {
+    Project     = var.project_name
+    Owner       = var.owner
     Environment = var.Environment.name
+    Terraform   = "true"
   }
 }
 
@@ -90,4 +103,11 @@ module "blog_sg" {
   ingress_cidr_blocks = ["0.0.0.0/0"]
   egress_rules = ["all-all"]
   egress_cidr_blocks = ["0.0.0.0/0"]
+
+  tags = {
+    Project     = var.project_name
+    Owner       = var.owner
+    Environment = var.Environment.name
+    Terraform   = "true"
+  }
 }

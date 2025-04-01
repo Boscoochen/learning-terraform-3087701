@@ -15,6 +15,18 @@ variable "ami_filter" {
   }
 }
 
+variable "project_name" {
+  description = "Name of the project for cost and tagging"
+  type        = string
+  default     = "ercot"
+}
+
+variable "owner" {
+  description = "Who owns this infrastructure"
+  type        = string
+  default     = "bosco"
+}
+
 variable "Environment" {
   description = "Development Environment"
 
