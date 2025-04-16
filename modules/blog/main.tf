@@ -41,6 +41,7 @@ module "blog_autoscaling" {
 
   min_size            = var.asg_min_size
   max_size            = var.asg_max_size
+  desired_capacity    = 0
   vpc_zone_identifier = module.blog_vpc.public_subnets
   target_group_arns   = module.blog_alb.target_group_arns
   security_groups     = [module.blog_sg.security_group_id]
