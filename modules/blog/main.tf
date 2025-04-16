@@ -112,10 +112,3 @@ module "blog_sg" {
     Terraform   = "true"
   }
 }
-
-
-resource "null_resource" "test" {
-  triggers = {
-    always_run = timestamp()
-  }
-}
